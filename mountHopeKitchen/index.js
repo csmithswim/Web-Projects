@@ -14,13 +14,15 @@ const express = require('express'), //requiring all of the dependancies
 
     connectionURI = process.env.MONGO;
 
-    // homeRouter = require('./routes/homeRouter');
+    server.use(express.static('static'))
+
+    homeRouter = require('./routes/homeRouter');
 
     server.use(morgan('dev'));
 
     server.use(express.json());
 
-    // server.use('/', homeRouter);
+    server.use('/', homeRouter);
 
     mongoose.connect(connectionURI, deprecatedObj, () => {
 
